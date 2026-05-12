@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     
     private void Move()
     {
-        float horizontal = Input.GetAxis("Horizontal");// пероеделать через Input
+        float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 directionVector = new Vector3(horizontal, 0, vertical);
