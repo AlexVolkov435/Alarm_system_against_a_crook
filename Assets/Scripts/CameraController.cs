@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
         transform.Rotate(angleX, 0, 0);
     }
     
-    private void FixedUpdate()
+    private void LateUpdate ()
     {
         Vector3 newCamPosition = new Vector3(_playerTransform.position.x + _offset.x, _playerTransform.position.y + _offset.y,
             _playerTransform.position.z + _offset.z);

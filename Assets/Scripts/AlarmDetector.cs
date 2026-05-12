@@ -1,34 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class AlarmDetector : MonoBehaviour
 {
     [SerializeField] private AlarmSystem _alarmSystem;
     
-    private int _counter;
-    private Animator _animator;
-
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();
-    }
-
+    public event Action OnAlarmDetected;
+    public event Action OffAlarmDetected;
+    
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out PlayerController playerController))
+        if (other.TryGetComponent(out Player player))
         {
-            _counter++;
-            _alarmSystem.SetThiefStatus(true);
-            _animator.SetBool("isOpen", true);
+            OnAlarmDetected?.Invoke();
         }
-
-        CountPenetrations();
     }
 
-    private void CountPenetrations()
+    private void OnTriggerExit(Collider other)
     {
-        if (_counter % 2 == 0)
-        {
-            _alarmSystem.SetThiefStatus(false);
-        }
+        OffAlarmDetected?.Invoke();
     }
 }
