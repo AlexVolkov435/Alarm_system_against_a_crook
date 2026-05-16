@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class Door : MonoBehaviour
 {
     private Animator _animator;

@@ -3,21 +3,22 @@ using UnityEngine;
 
 public class AlarmDetector : MonoBehaviour
 {
-    [SerializeField] private AlarmSystem _alarmSystem;
-    
-    public event Action OnAlarmDetected;
-    public event Action OffAlarmDetected;
+    public event Action PlayerEntered;
+    public event Action PlayerExited;
     
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Player player))
         {
-            OnAlarmDetected?.Invoke();
+            PlayerEntered?.Invoke();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        OffAlarmDetected?.Invoke();
+        if (other.TryGetComponent(out Player player))
+        {
+            PlayerExited?.Invoke();
+        }
     }
 }

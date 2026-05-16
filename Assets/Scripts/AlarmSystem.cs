@@ -15,14 +15,14 @@ public class AlarmSystem : MonoBehaviour
     
     private void OnEnable()
     {
-        _alarmDetector.OnAlarmDetected += TurnAlarm;
-        _alarmDetector.OffAlarmDetected += TurnOffAlarm;
+        _alarmDetector.PlayerEntered += OnPlayerEntered;
+        _alarmDetector.PlayerExited += OnPlayerExited;
     }
 
     private void OnDisable()
     {
-        _alarmDetector.OnAlarmDetected -= TurnAlarm;
-        _alarmDetector.OffAlarmDetected -= TurnOffAlarm;
+        _alarmDetector.PlayerEntered -= OnPlayerEntered;
+        _alarmDetector.PlayerExited -= OnPlayerExited;
     }
 
     private void Start()
@@ -31,13 +31,13 @@ public class AlarmSystem : MonoBehaviour
         _audioSource.volume = _minVolume;
     }
 
-    private void TurnAlarm()
+    private void OnPlayerEntered()
     {
         _isThiefInside = true;
         StartVolumeChange();
     }
     
-    private void TurnOffAlarm()
+    private void OnPlayerExited()
     {
         _isThiefInside = false;
         StartVolumeChange();
