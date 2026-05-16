@@ -40,15 +40,8 @@ public class AlarmSystem : MonoBehaviour
     private void TurnOffAlarm()
     {
         _isThiefInside = false;
+        StartVolumeChange();
     }
-    
-   private void Update()
-   {
-        float targetVolume = _isThiefInside ? _maxVolume : _minVolume;
-        
-        _audioSource.volume = Mathf.MoveTowards(
-            _audioSource.volume, targetVolume, _volumeChangeSpeed * Time.deltaTime);
-   }
 
    private void StartVolumeChange()
    {
